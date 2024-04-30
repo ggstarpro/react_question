@@ -38,3 +38,8 @@ npm run dev
 
 ## 4. 講座で使用したコード
 講座で使用したコードは、`practice`配下のコードになります。
+
+
+
+## 備考. URL
+http://localhost:3335/practice/01
