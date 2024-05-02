@@ -1,5 +1,7 @@
 import { NextPage } from 'next';
 
+import Button from '@/components/common/parts/Button';
+import { COLORS, useChangeBgColor } from '@/hooks/useChangeBgColor';
 import { useCountUp } from '@/hooks/useCount';
 import { useRealTimeText } from '@/hooks/useRealTimeText';
 import { useTextShowHidden } from '@/hooks/useTextShowHidden';
@@ -11,6 +13,8 @@ const Page: NextPage = () => {
   const { isHidden, handleClickIndicate, handleClickHidden } = useTextShowHidden();
   /** Q4 */
   const { text, handleChangeText } = useRealTimeText();
+  /** Q5 */
+  const { bgColorIndex, handleChangeBgColor } = useChangeBgColor();
 
   return (
     <>
@@ -44,12 +48,18 @@ const Page: NextPage = () => {
           </div>
         </div> */}
 
+        {/* Q4
         <div className="flex justify-center">
           <div>
             <h2 className="mb-4 text-center text-6xl">{text}</h2>
             <div className="flex justify-center">
               <input type="text" className="border px-3 py-2" onChange={handleChangeText} />
             </div>
+          </div>
+        </div> */}
+        <div className="h-screen pt-8" style={{ backgroundColor: COLORS[bgColorIndex] }}>
+          <div className="flex justify-center">
+            <Button variant="primary" label="色を変更" onClick={handleChangeBgColor} />
           </div>
         </div>
       </div>
