@@ -1,11 +1,12 @@
 import { NextPage } from 'next';
 
-import Button from '@/components/common/parts/Button';
+import { useCelsiusToFahrenheit } from '@/hooks/useCelsiusToFahrenheit';
 import { useChangeBgColor } from '@/hooks/useChangeBgColor';
 import { useCountUp } from '@/hooks/useCount';
 import { useDisplayFeedback } from '@/hooks/useDisplayFeedback';
 import { useRealTimeText } from '@/hooks/useRealTimeText';
 import { useTextShowHidden } from '@/hooks/useTextShowHidden';
+
 
 const Page: NextPage = () => {
   /** Q2 */
@@ -19,6 +20,9 @@ const Page: NextPage = () => {
   /** Q6 */
   const { feedBackText, feedBackList, handleChangeFeedBackText, handleSendFeedBack } =
     useDisplayFeedback();
+  /** Q7 */
+  const { celsius, handleChangeCelsius, convertCelsiusToFahrenheit } = useCelsiusToFahrenheit();
+
   return (
     <>
       <div className="mx-auto mt-10 max-w-4xl">
@@ -68,6 +72,7 @@ const Page: NextPage = () => {
           </div>
         </div> */}
 
+        {/* Q6
         <div className="flex justify-center">
           <div>
             <textarea
@@ -84,6 +89,21 @@ const Page: NextPage = () => {
                 <li key={index}>{feedBack}</li>
               ))}
             </div>
+          </div>
+        </div> */}
+        <div className="flex justify-center">
+          <div>
+            <div className="mb-2 flex items-center gap-x-2">
+              <label htmlFor="celsius">摂氏温度</label>
+              <input
+                type="number"
+                id="celsius"
+                className="rounded-md border px-2 py-1 outline-none"
+                onChange={handleChangeCelsius}
+                value={celsius}
+              />
+            </div>
+            <p>華氏温度: {convertCelsiusToFahrenheit(celsius)}</p>
           </div>
         </div>
       </div>
