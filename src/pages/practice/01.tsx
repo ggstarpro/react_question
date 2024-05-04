@@ -1,14 +1,13 @@
 import { NextPage } from 'next';
 
-import Button from '@/components/common/parts/Button';
 import { useCelsiusToFahrenheit } from '@/hooks/useCelsiusToFahrenheit';
 import { useChangeBgColor } from '@/hooks/useChangeBgColor';
 import { useCountUp } from '@/hooks/useCount';
+import { useDigitalClock } from '@/hooks/useDigitalClock';
 import { useDisplayFeedback } from '@/hooks/useDisplayFeedback';
-import { useQuiz, QUESTION, CHOICE_LIST } from '@/hooks/useQuiz';
+import { useQuiz } from '@/hooks/useQuiz';
 import { useRealTimeText } from '@/hooks/useRealTimeText';
 import { useTextShowHidden } from '@/hooks/useTextShowHidden';
-
 
 const Page: NextPage = () => {
   /** Q2 */
@@ -26,7 +25,8 @@ const Page: NextPage = () => {
   const { celsius, handleChangeCelsius, convertCelsiusToFahrenheit } = useCelsiusToFahrenheit();
   /** Q8 */
   const { answerResult, userChoice, handleUserChoice, handleSubmitUserChoice } = useQuiz();
-
+  /** Q9 */
+  const { currentTime } = useDigitalClock();
   return (
     <>
       <div className="mx-auto mt-10 max-w-4xl">
@@ -111,6 +111,7 @@ const Page: NextPage = () => {
             <p>華氏温度: {convertCelsiusToFahrenheit(celsius)}</p>
           </div>
         </div> */}
+        {/* Q8
         <div className="flex justify-center">
           <div>
             <h3 className="text-center text-2xl">{QUESTION}</h3>
@@ -129,6 +130,12 @@ const Page: NextPage = () => {
               <Button onClick={handleSubmitUserChoice} label="送信" variant="primary" />
             </div>
             <p className="text-center">{answerResult}</p>
+          </div>
+        </div> */}
+
+        <div className="flex justify-center">
+          <div>
+            <h3 className="text-center text-2xl">{currentTime.toLocaleString()}</h3>
           </div>
         </div>
       </div>
