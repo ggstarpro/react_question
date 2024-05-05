@@ -6,6 +6,7 @@ import { useCountUp } from '@/hooks/useCount';
 import { useDigitalClock } from '@/hooks/useDigitalClock';
 import { useDisplayFeedback } from '@/hooks/useDisplayFeedback';
 import { useQuiz } from '@/hooks/useQuiz';
+import { useQuotesRandom } from '@/hooks/useQuotesRandom';
 import { useRealTimeText } from '@/hooks/useRealTimeText';
 import { useTextShowHidden } from '@/hooks/useTextShowHidden';
 
@@ -27,6 +28,9 @@ const Page: NextPage = () => {
   const { answerResult, userChoice, handleUserChoice, handleSubmitUserChoice } = useQuiz();
   /** Q9 */
   const { currentTime } = useDigitalClock();
+  /** Q10 */
+  const { quote } = useQuotesRandom();
+
   return (
     <>
       <div className="mx-auto mt-10 max-w-4xl">
@@ -133,9 +137,17 @@ const Page: NextPage = () => {
           </div>
         </div> */}
 
+        {/* Q9
         <div className="flex justify-center">
           <div>
             <h3 className="text-center text-2xl">{currentTime.toLocaleString()}</h3>
+          </div>
+        </div>
+        */}
+
+        <div className="flex justify-center">
+          <div>
+            <h3 className="text-center text-2xl">{quote}</h3>
           </div>
         </div>
       </div>
