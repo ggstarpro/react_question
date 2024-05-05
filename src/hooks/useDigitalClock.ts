@@ -6,9 +6,9 @@ type UseDigitalClock = () => {
 export const useDigitalClock: UseDigitalClock = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   useEffect(() => {
-    console.log('use Effect 初回実施');
+    //console.log('use Effect 初回実施');
     const timerId = setInterval(() => {
-      console.log('use Effect 1秒ごとに1回実施');
+      // console.log('use Effect 1秒ごとに1回実施');
       setCurrentTime(new Date());
     }, 1000);
 
