@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 
+import Button from '@/components/common/parts/Button';
 import { useCelsiusToFahrenheit } from '@/hooks/useCelsiusToFahrenheit';
 import { useChangeBgColor } from '@/hooks/useChangeBgColor';
 import { useCountUp } from '@/hooks/useCount';
@@ -9,7 +10,9 @@ import { useQuiz } from '@/hooks/useQuiz';
 import { useQuotesRandom } from '@/hooks/useQuotesRandom';
 import { useRealTimeText } from '@/hooks/useRealTimeText';
 import { useTextShowHidden } from '@/hooks/useTextShowHidden';
+import { useTimer } from '@/hooks/useTimer';
 import { useTrafficLight } from '@/hooks/useTrafficLight';
+
 
 const Page: NextPage = () => {
   /** Q2 */
@@ -33,6 +36,9 @@ const Page: NextPage = () => {
   const { quote } = useQuotesRandom();
   /** Q11 */
   const { currentLight } = useTrafficLight();
+  /** Q12 */
+  const { timer, handleCountToggle, handleRest, handleDisplayCountLabel } = useTimer();
+
   return (
     <>
       <div className="mx-auto mt-10 max-w-4xl">
@@ -153,6 +159,8 @@ const Page: NextPage = () => {
             <h3 className="text-center text-2xl">{quote}</h3>
           </div>
         </div> */}
+
+        {/* Q11
         <div className="flex justify-center">
           <div className="mt-4 flex justify-center gap-x-2">
             <div
@@ -164,6 +172,19 @@ const Page: NextPage = () => {
             <div
               className={`size-12 rounded-full ${currentLight === 'red' ? 'bg-red-600' : 'bg-gray-700'}`}
             ></div>
+          </div>
+        </div> */}
+        <div className="flex justify-center">
+          <div>
+            <h3 className="text-center text-2xl">時間: {timer}秒</h3>
+            <div className="mt-4 flex justify-center gap-x-2">
+              <Button
+                onClick={handleCountToggle}
+                label={handleDisplayCountLabel()}
+                variant="primary"
+              />
+              <Button onClick={handleRest} label="リセット" variant="secondary" />
+            </div>
           </div>
         </div>
       </div>
