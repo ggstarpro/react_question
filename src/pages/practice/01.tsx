@@ -9,6 +9,7 @@ import { useQuiz } from '@/hooks/useQuiz';
 import { useQuotesRandom } from '@/hooks/useQuotesRandom';
 import { useRealTimeText } from '@/hooks/useRealTimeText';
 import { useTextShowHidden } from '@/hooks/useTextShowHidden';
+import { useTrafficLight } from '@/hooks/useTrafficLight';
 
 const Page: NextPage = () => {
   /** Q2 */
@@ -30,7 +31,8 @@ const Page: NextPage = () => {
   const { currentTime } = useDigitalClock();
   /** Q10 */
   const { quote } = useQuotesRandom();
-
+  /** Q11 */
+  const { currentLight } = useTrafficLight();
   return (
     <>
       <div className="mx-auto mt-10 max-w-4xl">
@@ -145,9 +147,23 @@ const Page: NextPage = () => {
         </div>
         */}
 
+        {/* Q10
         <div className="flex justify-center">
           <div>
             <h3 className="text-center text-2xl">{quote}</h3>
+          </div>
+        </div> */}
+        <div className="flex justify-center">
+          <div className="mt-4 flex justify-center gap-x-2">
+            <div
+              className={`size-12 rounded-full ${currentLight === 'green' ? 'bg-green-600' : 'bg-gray-700'}`}
+            ></div>
+            <div
+              className={`size-12 rounded-full ${currentLight === 'yellow' ? 'bg-yellow-600' : 'bg-gray-700'}`}
+            ></div>
+            <div
+              className={`size-12 rounded-full ${currentLight === 'red' ? 'bg-red-600' : 'bg-gray-700'}`}
+            ></div>
           </div>
         </div>
       </div>
