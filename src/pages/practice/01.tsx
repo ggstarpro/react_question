@@ -6,6 +6,7 @@ import { useChangeBgColor } from '@/hooks/useChangeBgColor';
 import { useCountUp } from '@/hooks/useCount';
 import { useDigitalClock } from '@/hooks/useDigitalClock';
 import { useDisplayFeedback } from '@/hooks/useDisplayFeedback';
+import { usePokemon } from '@/hooks/usePokemon';
 import { useQuiz } from '@/hooks/useQuiz';
 import { useQuotesRandom } from '@/hooks/useQuotesRandom';
 import { useRealTimeText } from '@/hooks/useRealTimeText';
@@ -40,6 +41,10 @@ const Page: NextPage = () => {
   const { timer, handleCountToggle, handleRest, handleDisplayCountLabel } = useTimer();
   /** Q13 */
   const { starWarsCharacter, setStarWarsId } = useStarWars();
+  /** Q14 */
+  const { inputPokemon, pokemonApiError, pokemonInfo, handleSetPokemon, fetchPokemon } =
+    usePokemon();
+
   return (
     <>
       <div className="mx-auto mt-10 max-w-4xl">
@@ -189,6 +194,7 @@ const Page: NextPage = () => {
             </div>
           </div>
         </div> */}
+        {/* Q13
         <div className="flex justify-center">
           <div>
             {starWarsCharacter ? (
@@ -211,6 +217,42 @@ const Page: NextPage = () => {
                 variant="primary"
                 onClick={() => setStarWarsId((prevState) => prevState + 1)}
               />
+            </div>
+          </div>
+        </div> */}
+        <div className="flex justify-center">
+          <div>
+            <div className="mt-4">
+              <div>
+                <input
+                  type="text"
+                  className="rounded-md border px-3 py-2 outline-none"
+                  placeholder="ポケモンの名前を入力"
+                  onChange={handleSetPokemon}
+                  value={inputPokemon}
+                />
+                {pokemonApiError && (
+                  <p className="mt-2 text-base text-red-500">{pokemonApiError}</p>
+                )}
+              </div>
+
+              {pokemonInfo && (
+                <div className="mt-4 text-center text-base">
+                  <h3>{pokemonInfo.name}</h3>
+                  <div className="flex justify-center">
+                    <img src={pokemonInfo.sprites.front_default} alt={pokemonInfo.name} />
+                  </div>
+                  <div>
+                    タイプ:{' '}
+                    {pokemonInfo.types.map((pokemonType) => pokemonType.type.name).join(',')}
+                  </div>
+                  <div>身長: {pokemonInfo.height}</div>
+                  <div>重さ: {pokemonInfo.weight}</div>
+                </div>
+              )}
+            </div>
+            <div className="mt-4 flex justify-center">
+              <Button onClick={fetchPokemon} label="検索" variant="primary" />
             </div>
           </div>
         </div>
