@@ -6,6 +6,7 @@ import { useChangeBgColor } from '@/hooks/useChangeBgColor';
 import { useCountUp } from '@/hooks/useCount';
 import { useDigitalClock } from '@/hooks/useDigitalClock';
 import { useDisplayFeedback } from '@/hooks/useDisplayFeedback';
+import { useMemoApp } from '@/hooks/useMemoApp';
 import { usePokemon } from '@/hooks/usePokemon';
 import { useQuiz } from '@/hooks/useQuiz';
 import { useQuotesRandom } from '@/hooks/useQuotesRandom';
@@ -44,6 +45,8 @@ const Page: NextPage = () => {
   /** Q14 */
   const { inputPokemon, pokemonApiError, pokemonInfo, handleSetPokemon, fetchPokemon } =
     usePokemon();
+  /** Q15 */
+  const { memo, memoList, handleChangeMemo, handleAddMemo, handleDeleteMemo } = useMemoApp();
 
   return (
     <>
@@ -220,6 +223,7 @@ const Page: NextPage = () => {
             </div>
           </div>
         </div> */}
+        {/* Q14
         <div className="flex justify-center">
           <div>
             <div className="mt-4">
@@ -254,6 +258,40 @@ const Page: NextPage = () => {
             <div className="mt-4 flex justify-center">
               <Button onClick={fetchPokemon} label="検索" variant="primary" />
             </div>
+          </div>
+        </div> */}
+        <div className="flex justify-center">
+          <div>
+            {/* 入力フォーム */}
+            <div>
+              <input
+                type="text"
+                placeholder="メモを入力"
+                className="rounded-md border px-3 py-2 outline-none"
+                value={memo}
+                onChange={handleChangeMemo}
+              />
+
+              {/* 追加ボタン */}
+              <Button label="追加" variant="primary" className="mt-4" onClick={handleAddMemo} />
+            </div>
+
+            {/* メモリスト */}
+            <ul className="mt-4">
+              {memoList.map((memo, index) => (
+                <li
+                  key={index}
+                  className="flex items-center justify-between border-b border-gray-200 py-2 text-sm"
+                >
+                  {memo}
+                  <Button
+                    label="削除"
+                    variant="error-secondary"
+                    onClick={() => handleDeleteMemo(index)}
+                  />
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
