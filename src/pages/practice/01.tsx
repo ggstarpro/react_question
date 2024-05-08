@@ -14,6 +14,7 @@ import { useRealTimeText } from '@/hooks/useRealTimeText';
 import { useStarWars } from '@/hooks/useStarWars';
 import { useTextShowHidden } from '@/hooks/useTextShowHidden';
 import { useTimer } from '@/hooks/useTimer';
+import { useTodoApp } from '@/hooks/useTodoApp';
 import { useTrafficLight } from '@/hooks/useTrafficLight';
 
 const Page: NextPage = () => {
@@ -47,7 +48,15 @@ const Page: NextPage = () => {
     usePokemon();
   /** Q15 */
   const { memo, memoList, handleChangeMemo, handleAddMemo, handleDeleteMemo } = useMemoApp();
-
+  /** Q16 */
+  const {
+    todoLabel,
+    todoList,
+    handleAddTodo,
+    handleChangeTodoLabel,
+    handleCompleteTodo,
+    handleDeleteTodo,
+  } = useTodoApp();
   return (
     <>
       <div className="mx-auto mt-10 max-w-4xl">
@@ -260,9 +269,9 @@ const Page: NextPage = () => {
             </div>
           </div>
         </div> */}
+        {/* Q16
         <div className="flex justify-center">
           <div>
-            {/* 入力フォーム */}
             <div>
               <input
                 type="text"
@@ -272,11 +281,9 @@ const Page: NextPage = () => {
                 onChange={handleChangeMemo}
               />
 
-              {/* 追加ボタン */}
               <Button label="追加" variant="primary" className="mt-4" onClick={handleAddMemo} />
             </div>
 
-            {/* メモリスト */}
             <ul className="mt-4">
               {memoList.map((memo, index) => (
                 <li
@@ -289,6 +296,42 @@ const Page: NextPage = () => {
                     variant="error-secondary"
                     onClick={() => handleDeleteMemo(index)}
                   />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div> */}
+        <div className="flex justify-center">
+          <div>
+            <div>
+              <input
+                onChange={handleChangeTodoLabel}
+                type="text"
+                className="rounded-md border px-3 py-2 outline-none"
+                placeholder="タスクを入力"
+                value={todoLabel}
+              />
+              <Button onClick={handleAddTodo} label="追加" variant="primary" className="mt-2" />
+            </div>
+            <ul className="mt-4">
+              {todoList.map((todo, todoListIndex) => (
+                <li
+                  className={`flex items-center justify-between border-b border-gray-500 py-2  ${todo.isCompleted ? 'line-through' : ''}`}
+                  key={todoListIndex}
+                >
+                  {todo.label}
+                  <div className="flex gap-x-2">
+                    <Button
+                      onClick={() => handleCompleteTodo(todoListIndex)}
+                      label="完了"
+                      variant="secondary"
+                    />
+                    <Button
+                      onClick={() => handleDeleteTodo(todoListIndex)}
+                      label="削除"
+                      variant="error-secondary"
+                    />
+                  </div>
                 </li>
               ))}
             </ul>
