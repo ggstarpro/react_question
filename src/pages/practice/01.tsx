@@ -6,6 +6,7 @@ import { useChangeBgColor } from '@/hooks/useChangeBgColor';
 import { useCountUp } from '@/hooks/useCount';
 import { useDigitalClock } from '@/hooks/useDigitalClock';
 import { useDisplayFeedback } from '@/hooks/useDisplayFeedback';
+import { useEntry } from '@/hooks/useEntry';
 import { useMemoApp } from '@/hooks/useMemoApp';
 import { usePokemon } from '@/hooks/usePokemon';
 import { useQuiz } from '@/hooks/useQuiz';
@@ -57,6 +58,20 @@ const Page: NextPage = () => {
     handleCompleteTodo,
     handleDeleteTodo,
   } = useTodoApp();
+
+  /** Q17 */
+  const {
+    entryList,
+    title,
+    content,
+    filterDate,
+    handleChangeTitle,
+    handleChangeContent,
+    handleAddEntry,
+    handleChangeFilterDate,
+    filteredEntryList,
+  } = useEntry();
+
   return (
     <>
       <div className="mx-auto mt-10 max-w-4xl">
@@ -301,6 +316,7 @@ const Page: NextPage = () => {
             </ul>
           </div>
         </div> */}
+        {/* Q17
         <div className="flex justify-center">
           <div>
             <div>
@@ -335,6 +351,50 @@ const Page: NextPage = () => {
                 </li>
               ))}
             </ul>
+          </div>
+        </div> */}
+        <div className="flex justify-center">
+          <div className="w-80">
+            <div>
+              <h2 className="text-2xl font-bold">日記アプリ</h2>
+              <div>
+                <input
+                  type="text"
+                  placeholder="タイトル"
+                  className="mt-4 w-full rounded-md border px-3 py-2 outline-none"
+                  onChange={handleChangeTitle}
+                  value={title}
+                />
+                <textarea
+                  placeholder="内容"
+                  className="mt-4 w-full rounded-md border px-3 py-2 outline-none"
+                  onChange={handleChangeContent}
+                  value={content}
+                />
+                <Button label="追加" variant="primary" className="mt-4" onClick={handleAddEntry} />
+              </div>
+              <div className="mt-8 flex items-center justify-between">
+                <span className="text-base">日付でフィルター</span>
+                <input
+                  type="date"
+                  className="rounded-md border px-3 py-2 outline-none"
+                  onChange={handleChangeFilterDate}
+                />
+              </div>
+
+              <div className="mt-7">
+                <h2 className="text-xl font-bold">日記一覧</h2>
+                <ul>
+                  {filteredEntryList.map((entry, index) => (
+                    <li className="mt-4 rounded-md border p-4" key={index}>
+                      <h3>{entry.title}</h3>
+                      <p>{entry.content}</p>
+                      <p>{entry.createdAt.toLocaleDateString()}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
