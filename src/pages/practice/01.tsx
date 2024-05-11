@@ -17,6 +17,7 @@ import { useTextShowHidden } from '@/hooks/useTextShowHidden';
 import { useTimer } from '@/hooks/useTimer';
 import { useTodoApp } from '@/hooks/useTodoApp';
 import { useTrafficLight } from '@/hooks/useTrafficLight';
+import { useUsers } from '@/hooks/useUsers';
 
 const Page: NextPage = () => {
   /** Q2 */
@@ -72,6 +73,18 @@ const Page: NextPage = () => {
     filteredEntryList,
   } = useEntry();
 
+  /** Q18 */
+  const {
+    userList,
+    userName,
+    userAge,
+    queryUserName,
+    handleChangeUserName,
+    handleChangeUserAge,
+    handleChangeQueryUserName,
+    handleAddUser,
+    filteredUserList,
+  } = useUsers();
   return (
     <>
       <div className="mx-auto mt-10 max-w-4xl">
@@ -353,6 +366,7 @@ const Page: NextPage = () => {
             </ul>
           </div>
         </div> */}
+        {/* Q18
         <div className="flex justify-center">
           <div className="w-80">
             <div>
@@ -395,6 +409,54 @@ const Page: NextPage = () => {
                 </ul>
               </div>
             </div>
+          </div>
+        </div> */}
+        <div className="flex justify-center">
+          <div className="w-80">
+            <h2 className="text-2xl font-bold">ユーザ検索アプリ</h2>
+            <div className="mt-8">
+              <h3 className="text-base">ユーザ追加フォーム</h3>
+              <input
+                type="text"
+                placeholder="名前"
+                className="mt-4 w-full rounded-md border px-3 py-2 outline-none"
+                onChange={handleChangeUserName}
+                value={userName}
+              />
+              <input
+                type="text"
+                placeholder="年齢"
+                className="mt-2 w-full rounded-md border px-3 py-2 outline-none"
+                onChange={handleChangeUserAge}
+                value={userAge}
+              />
+              <Button
+                label="ユーザ追加"
+                variant="primary"
+                className="mt-4"
+                onClick={handleAddUser}
+              />
+            </div>
+
+            <div className="mt-12">
+              <h3 className="text-base">検索フィルター</h3>
+              <input
+                type="text"
+                placeholder="ユーザ検索"
+                className="mt-4 w-full rounded-md border px-3 py-2 outline-none"
+                onChange={handleChangeQueryUserName}
+                value={queryUserName}
+              />
+            </div>
+
+            <ul className="mt-4">
+              {filteredUserList.map((user, index) => (
+                <li className="flex justify-between border-b p-4 text-sm" key={index}>
+                  <span>{user.name}</span>
+                  <span>{user.age}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
