@@ -1,3 +1,12 @@
+# 概要
+- Reactの学習用REP
+- 内容は[チャート式問題集の用に学ぶ React・Next.js・TypeScript・Tailwind CSS](https://www.udemy.com/course/react-chart-app/)に準ずる
+
+## 勉強方法
+- `my_branch`の問題配下の要件を見て実装してください
+- ブランチは`main`から任意のブランチを切って実装してください
+- URLは`http://localhost:3335/practice/01`で画面表示されます
+
 ## 環境
 
 `package.json` を参照ください。
@@ -38,8 +47,3 @@ npm run dev
 
 ## 4. 講座で使用したコード
 講座で使用したコードは、`practice`配下のコードになります。
-
-
-
-## 備考. URL
-http://localhost:3335/practice/01
